@@ -90,6 +90,19 @@ def bot_maker(start_sum: int, players: list) -> None:
 
                 users_bot[player][user_choose] = details_damage_price[user_choose]
 
+            else:
+                if user_choose in details_survive_price.keys():
+                    if wallet < details_survive_price[user_choose]:
+                        print('Not enough money')
+                        continue
 
+                    wallet -= details_survive_price[user_choose]
+                    users_bot[player][user_choose] = details_survive_price[user_choose]
+                else:
+                    print('Wrong choice')
+                    continue
+            print(f'You bought {user_choose} for {details_damage_price[user_choose]} coins')
 
 player_maker(player_list)
+start_sum = 1000
+bot_maker(start_sum, player_list)
